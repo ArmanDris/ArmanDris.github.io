@@ -1,2 +1,2 @@
-# ArmanDris.github.io
-Website 🥳
+# localSudoku
+Small sudoku game. No backend

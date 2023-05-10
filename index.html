@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My website</title>
+        <title>Sudoku</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Welcome :p</h1>
-        <p>papapapapapap</p>
+        <header></header>
+        <main id="main">
+            <canvas id="canvas"></canvas>
+        </main>
+        <footer></footer>
+        <div id="collapse_header" class="collapseElement"></div>
+            <div id="collapse_container" class="collapseElement">
+                <canvas id="collapse" class="collapseElement"></canvas>
+            </div>
+        <div id="collapse_footer" class="collapseElement"></div>
     </body>
+    <script src="windowLogic.js"></script>
+    <script src="gameLogic.js"></script>
+    <script src="collapse.js"></script>
 </html>
