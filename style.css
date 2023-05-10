@@ -32,6 +32,7 @@ footer {
 
 .collapseElement {
     background: #A39E93;
+    display: none;
 }
 
 #collapse_header {
@@ -40,10 +41,6 @@ footer {
 
 #collapse_container {
     height: 80vh;
-}
-
-#collapse {
-    
 }
 
 #collapse_footer {

@@ -1,3 +1,9 @@
+window.addEventListener('keydown', function(e) {
+    if (e.key === ' ' && e.target == document.body) {
+        e.preventDefault();
+    }
+});
+
 let main = document.getElementById('main');
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
