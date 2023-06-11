@@ -15,6 +15,8 @@ class Board {
         this.font = "300 28px Sans-serif";
         this.boldFont = "300 28px Sans-serif";
 
+        this.win_screen = document.getElementById('win');
+
         // ======== BOARD LOGIC VARIABLES =======
         this.blankNum = 0;
         // Board gets populated with negative numbers at start of game, negative numbers cannot be changed :O.
@@ -29,6 +31,10 @@ class Board {
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
+
+        this.seconds = 0;
+
+        this.timer = setInterval(() => {this.seconds++}, 1000);
 
         // ======== INPUT HANDLING VARIABLES =======
         this.receiveInput = false;
@@ -208,7 +214,7 @@ class Board {
 
     // From Chat
     removeNumbers(board) {
-        const numToRemove = 40; // Adjust this number to control difficulty
+        const numToRemove = 1; // Adjust this number to control difficulty (default 40)
       
         for (let i = 0; i < numToRemove; i++) {
           const row = this.getRandomInt(8);
@@ -218,43 +224,86 @@ class Board {
         }
     }
 
-    // This function will likely be obsoleted by wave fn logic
-    checkValidNum(x, y, num) {
+    // True if x, y is valud and nonzero
+    validNum(x, y) {
         // Num must be only one of its kind on its row, column and mini box
-        if (num === 0) return true;
+        let num = this.board[x][y];
+
+        if (num === 0) return false;
 
         // Check valid row
         for (let j = 0; j < 9; j++) {
-            if (Math.abs(this.board[j][y]) === Math.abs(num)) {
+            if (j !== x && Math.abs(this.board[j][y]) === Math.abs(num)) {
                 return false;
             }
         }
-
 
         // Check valid Column
         for (let j = 0; j < 9; j++) {
-            if (Math.abs(this.board[x][j]) === Math.abs(num)) {
+            if (j !== y && Math.abs(this.board[x][j]) === Math.abs(num)) {
                 return false;
             }
         }
 
-
+        // Check valid mini box
         let miniGridX = Math.floor(x / 3);
         let miniGridY = Math.floor(y / 3);
 
         let startingX = miniGridX * 3;
         let startingY = miniGridY * 3;
 
-        // Check valid mini box
         for (let j = startingX; j < startingX + 3; j++) {
             for (let k = startingY; k < startingY + 3; k++) {
-                if (Math.abs(this.board[j][k]) === Math.abs(num)) {
+                if (j !== x && k !== y && Math.abs(this.board[j][k]) === Math.abs(num)) {
                     return false;
                 }
             }
         }
 
         return true;
+    }
+
+    checkSolved() {
+        for (let x = 0; x < 8; x++) {
+            for (let y = 0; y < 8; y++) {
+                if (this.validNum(x, y) === false) {
+                    return;
+                }
+            }
+        }
+
+        this.win();
+    }
+
+    win() {
+        // Lock board
+
+        // Display win window
+        let win_messages = [
+            "Bravo, my brilliant puzzle solver!",
+            "Excellent work, my Sudoku superstar!",
+            "Impressive skills, you've got that Sudoku magic!",
+            "You did it, my clever friend! So proud of you!",
+            "Fantastic job, well played, my Sudoku ace!",
+            "Outstanding performance, my dear genius!",
+            "Well done, my incredible puzzle master!",
+            "You're awesome, congratulations, my brilliant mind!",
+            "Bravo, my talented Sudoku champion!",
+            "Terrific achievement, hats off to you, my puzzle prodigy!",
+            "Incredible work, you're a Sudoku genius, my exceptional player!",
+            "Marvelous job, I'm beyond proud of you, my puzzle virtuoso!",
+            "Phenomenal play, you've mastered it, my unstoppable solver!",
+            "Congrats, you're a Sudoku superstar, my unbeatable challenger!",
+            "Exceptional performance, way to go, my incredible mind-bender!"
+        ]
+
+        let timer = document.getElementById('timer');
+        timer.textContent = this.formatTime();
+
+        let grats = document.getElementById('grats-text');
+        grats.textContent = win_messages[this.getRandomInt(win_messages.length - 1)];
+
+        this.win_screen.style.display = 'initial';
     }
 
     // ======== START OF INPUT HANDLING =======
@@ -310,6 +359,8 @@ class Board {
     }
 
     handleKeyEvent(e) {
+        if (this.win_screen.style.display !== 'none') return;
+
         if (this.receiveInput == false) return;
 
         // If key not 1-9 or SPACE then return
@@ -319,15 +370,25 @@ class Board {
         if (this.board[this.currentSquareX][this.currentSquareY] < 0) return;
 
         let num = 0;
-        if (e.key === " ") num = 0;
-        else num = parseInt(e.key);
-
-        //if (!checkValidNum(currentSquareX, currentSquareY, num)) return;
+        if (e.key === " ") { num = 0; }
+        else { num = parseInt(e.key); }
 
         this.board[this.currentSquareX][this.currentSquareY] = num;
         this.selectSquare();
+
+        this.checkSolved();
     }
 
     // ========== MISC FUNCTIONS ==========
     getRandomInt(max) { return Math.floor(Math.random() * (max + 1)); }
+
+    formatTime() {
+        let m = Math.floor(this.seconds/60);
+        let s = this.seconds % 60;
+
+        if (m < 10) { m = ('0' + m); }
+        if (s < 10) { s = ('0' + s); }
+
+        return (m + ":" + s);
+    }
 }

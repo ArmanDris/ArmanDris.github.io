@@ -14,6 +14,7 @@ header {
 main {
     height: 80vh;
 }
+
 canvas {
     /*font-family: 'Nunito Sans';*/
     padding: 0;
@@ -26,13 +27,58 @@ canvas {
     right: 0;
 }
 
+#win {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Canvas height is 80% of vh */
+    width: 60vh;
+    height: 60vh;
+    border-radius: 15%;
+    background: #27241D;
+    border: 5px #C7A86B solid;
+    opacity: 0.95;
+
+    font-family: sans-serif;
+    color: #FAF9F7;
+    
+    font-weight: lighter;
+}
+
+#timer {
+    text-align: center;
+
+    font-size: 60px;
+    letter-spacing: 0.1em;
+    margin-top: 25%;
+}
+
+#grats-text {
+    text-align: center;
+    width: 40vh;
+
+    color: #FAF9F7;
+    font-size: 24px;
+    margin: 5% auto;
+}
+
+#restart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+    cursor: pointer;
+}
+
 footer {
     height: 10vh;
 }
 
 #collapse_elements {
     background: #A39E93;
-    display: none;
+    display: none; /*Set display to 'none' to disable collapse board*/
     position: absolute;
     top: 0;
     left: 75%;
