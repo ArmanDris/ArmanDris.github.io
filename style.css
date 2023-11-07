@@ -1,231 +1,28 @@
-* {
-    padding: 0;
-    margin: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://coolors.co/000000-1f1f1f-c792df-fbf2ea-9bb4d1 */
+/*  Bg          #000000
+    blk-txt     #1F1F1F
+    purple      #C792DF
+    light-txt   #FBF2EA
+    light-blu   #DCEDFF */
+    
+
+.manrope {
+    font-family: 'Manrope', sans-serif;
 }
 
-body {
-    background: #27241D;
-    color: #FAF9F7;
-    font-family: sans-serif;
-    /*font-family: 'Nunito Sans', sans-serif;*/
-    font-family: 'Rubik', sans-serif;
-    font-weight: lighter;
+.libre-b {
+    font-family: 'Libre Baskerville', serif;
 }
 
-h1 {
-    font-weight: lighter;
+a {
+    border-bottom: 1px solid #FBF2EA;
+    transition: 0.2s;
 }
 
-.center-flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.box {
-    background: #27241D;
-    color: #FAF9F7;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px #A39E93 solid;
-    border-radius: 15px;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.box:not(:last-child) {
-    margin-right: 8px;
-}
-
-/*Note that the Referee class looks for this property so changing .active name will break code*/
-.difficulty-option.active {
-    border: 1px #C7A86B solid;
-    color: #C7A86B;
-}
-
-/* Greeting CSS */
-#greeting {
-    z-index: 2;
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background: #27241D;
-}
-
-#greeting-inner-box {
-    width: 60%;
-    height: 50%;
-}
-
-#greeting-inner-box > * {
-    padding: 40px;
-}
-
-#puckleton {
-    font-size: 72px;
-    font-weight: bold;
-}
-
-#greetings-inner-right-box > * {
-    margin: 10px 0;
-}
-
-#greetings-inner-right-box p {
-    margin-bottom: 26px;
-}
-
-#name-input {
-    justify-content: left;
-}
-
-#difficulty {
-    justify-content: left;
-}
-
-
-/* For things like win and start screen */
-.prompt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    /* Canvas height is 80% of vh */
-    width: 44vh;
-    height: 44vh;
-    padding: 4%;
-    border-radius: 15%;
-
-    background: #27241D;
-    border: 5px #C7A86B solid;
-    text-align: center;
-}
-
-/* Header CSS */
-header {
-    height: 10vh;
-}
-
-.header-content {
-    justify-content: space-between;
-    width: 100%;
-    width: 80vh;
-    color:#C7A86B;
-}
-
-.header-content-box {
-    width: 150px;
-}
-
-#timer {
-    font-weight: bold;
-    font-size: 24px;
-}
-
-#restart {
-    cursor: pointer;
-    font-size: 18px;
-    color: #A39E93;
-}
-
-/* MAIN CSS */
-main {
-    height: 85vh;
-}
-
-canvas {
-    margin: auto;
-    display: block;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-/* Leaderboard CSS*/
-#leaderboard {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translate(-0%, -50%);
-
-    height: 50vh;
-    width: 30vh;
-}
-
-#leaderboard table {
-    height: 100%;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-#leaderboard tr {
-    height: calc(100% / 5);
-    /* Divide the height equally among 5 rows */
-}
-
-#leaderboard tr:nth-child(even) {
-    color: #C7A86B;
-}
-
-/* Welcome CSS */
-#welcome p {
-    margin: 5% 0 15% 0;
-}
-
-/* Play again CSS */
-#end_timer {
-    margin-top: 15%;
-    font-size: 70px;
-    color: #C7A86B;
-}
-
-#grats-text {
-    margin-top: 5%;
-    font-size: 20px;
-}
-
-#play-again {
-    margin: 10% 0;
-    padding: 5%;
-    color: #FAF9F7;
-    border: 1px #FAF9F7 solid;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#play-again:hover {
-    border: 1px #C7A86B solid;
-    color: #C7A86B;
-}
-
-footer {
-    height: 5vh;
-}
-
-#collapse_elements {
-    background: #A39E93;
-    display: none;
-    /*Set display to 'none' to disable collapse board*/
-    position: absolute;
-    top: 0;
-    left: 75%;
-}
-
-#collapse_header {
-    height: 10vh;
-    background: #27241D;
-}
-
-#collapse_container {
-    height: 80vh;
-}
-
-#collapse_footer {
-    height: 10vh;
-    background: #27241D;
+a:hover {
+    border-bottom: 2px solid #E34234;
 }

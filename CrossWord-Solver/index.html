@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cross Word Solver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link
+    href="https://fonts.googleapis.com/css?family=Comfortaa:300,400|Karla|Libre+Barcode+39|Oxygen:300,400,700|Poppins:200,300,400|Raleway:100,200,300,500,600,700,800,900"
+    rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <img id="book" src="https://img.icons8.com/color/96/000000/chrome-reader-mode.png">
+    <h2>One scroll away from a finished cross word puzzle.</h2>
+    <h1>Cross Word Solver</h1>
+    <div id="plsScroll">
+      <p>Scroll</p>
+      <img id="arrow" src="images/down-arrow.png">
+    </div>
+  </header>
+  <main>
+    <div onclick="switchList()" id="switch">
+      <p>Switch to French</p>
+    </div>
+    <div id="container">
+      <h2>Input the word in question below</h2>
+      <h1>Underscores ( _ ) represent unknown letters</h1>
+      <div id="line"></div>
+      <input value="ex__ple" type="text" onChange="searchWord()"/>
+      <div id="line"></div>
+      <p id="matches">example</p>
+    </div>
+  </main>
+</body>
+
+<script src="js/englishWordList.js"></script>
+<script src="js/frenchWordList.js"></script>
+<script src="js/autorun.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/wordProcessor.js"></script>
+
+</html>
