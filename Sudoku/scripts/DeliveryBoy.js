@@ -1,9 +1,24 @@
 class DeliveryBoy {
-	url = 'https://blueberrypie.myddns.me:443'
+	default_url = 'https://blueberrypie.myddns.me:443';
+	local_url = "http://127.0.0.1:80";
 
-	async deliver(name, score) {
+	url;
 
-		this.handleLocalServer();
+	async setURL() 
+	{
+		try {
+			const response = await fetch(this.default_url + '/ping');
+			if (response.ok)
+				this.url = this.default_url;
+		} catch (error) {
+			this.url = this.local_url;
+		}
+	}
+
+	async deliver(name, time, difficulty) {
+
+		if (!this.url)
+			await this.setURL();
 
 		fetch(this.url + '/mailbox', {
 			method: 'POST',
@@ -12,15 +27,15 @@ class DeliveryBoy {
 			headers: {
 				'Content-type': 'application/json'
 			},
-			body: JSON.stringify({ name: name, score: score })
+			body: JSON.stringify({ name: name, time: time, difficulty: difficulty })
 		})
 			.then(response => {
 				if (response.ok) {
-					console.log('Score sent successfully');
+					console.log('Time sent successfully');
 					return true;
 				}
 				else {
-					console.error('Failed to send score, Error:', response.status);
+					console.error('Failed to send time, Error:', response.status);
 				}
 			})
 			.catch(error => {
@@ -29,7 +44,10 @@ class DeliveryBoy {
 	}
 
 	async receive() {
-		this.handleLocalServer();
+
+		if (!this.url) 
+			await this.setURL();
+
 		try {
 			const response = await fetch(this.url + '/leaderboard', {
 				method: 'POST',
@@ -51,17 +69,6 @@ class DeliveryBoy {
 		catch (error) {
 			console.log(error);
 			throw error;
-		}
-	}
-
-	async handleLocalServer() {
-		let local_url = 'https://192.168.1.75:443';
-		try {
-			const response = await fetch(local_url + '/leaderboard');
-			if (response.ok)
-				this.url = local_url;
-		} catch (error) {
-			return;
 		}
 	}
 }

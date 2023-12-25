@@ -47,21 +47,15 @@ class Referee {
     }
 
     // ========== WIN LOGIC ==========
-    checkSolved() {
-        for (let x = 0; x < 8; x++) {
-            for (let y = 0; y < 8; y++) {
-                if (this.b.validNum(x, y) === false) {
-                    return;
-                }
-            }
-        }
-
-        this.trigger_victory();
+    checkSolved() 
+    {
+        if (BoardSolver.checkSolved(this.b.board))
+            this.trigger_victory();
     }
 
     trigger_victory() {
         this.stopTimer(this.intervalId);
-        this.d.deliver(this.name, this.seconds);
+        this.d.deliver(this.name, this.seconds, this.getDifficulty());
         this.syncLeaderboard();
 
         let win_messages = [
@@ -86,7 +80,7 @@ class Referee {
         timer.textContent = this.formatTime(this.seconds);
 
         let grats = document.getElementById('grats-text');
-        grats.textContent = win_messages[this.b.getRandomInt(win_messages.length - 1)];
+        grats.textContent = win_messages[BoardSolver.getRandomInt(win_messages.length - 1)];
 
         this.showWin();
     }
@@ -118,7 +112,7 @@ class Referee {
         if (e.key === ' ' && e.target == document.body) { e.preventDefault(); }
         if (this.win.style.display !== 'none' || this.greeting.style.display !== 'none') { return; }
         this.b.handleKeyEvent(e);
-        this.checkSolved();
+        this.checkSolved(this.b.board);
     }
 
     // ========== MISC FUNCTIONS ==========
