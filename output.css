@@ -574,10 +574,6 @@ video {
   grid-column: span 3 / span 3;
 }
 
-.col-span-2 {
-  grid-column: span 2 / span 2;
-}
-
 .m-2 {
   margin: 0.5rem;
 }
@@ -604,6 +600,10 @@ video {
   margin-bottom: 10rem;
 }
 
+.ml-\[3\%\] {
+  margin-left: 3%;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -614,22 +614,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.ml-\[\] {
-  margin-left: ;
-}
-
-.ml-\[3\] {
-  margin-left: 3;
-}
-
-.ml-\[3\$\] {
-  margin-left: 3$;
-}
-
-.ml-\[3\%\] {
-  margin-left: 3%;
 }
 
 .flex {
@@ -668,32 +652,16 @@ video {
   width: 100vw;
 }
 
-.min-w-\[\] {
-  min-width: ;
+.w-\[75\] {
+  width: 75;
 }
 
-.min-w-\[33\] {
-  min-width: 33;
-}
-
-.min-w-\[33\#\] {
-  min-width: 33#;
-}
-
-.min-w-\[33\$\] {
-  min-width: 33$;
+.w-\[75\%\] {
+  width: 75%;
 }
 
 .min-w-\[33\%\] {
   min-width: 33%;
-}
-
-.min-w-\[50\%\] {
-  min-width: 50%;
-}
-
-.min-w-\[\#\] {
-  min-width: #;
 }
 
 .list-inside {
@@ -706,10 +674,6 @@ video {
 
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-col {
